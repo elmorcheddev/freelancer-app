@@ -1,0 +1,561 @@
+<div class="page-title bg-cover" style="background:url(assets/img/bn-1.jpg)no-repeat;" data-overlay="5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12"></div>
+        </div>
+    </div>
+</div>
+<section class="gray-bg pt-4">
+    <div class="container-fluid">
+        <div class="row m-0">
+
+            <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12">
+                <div class="dashboard-navbar overlio-top">
+
+
+                    
+                    <div class="d-navigation">
+                        <ul id="metismenu">
+                            <li><a (click)="goToAccueil()"><i class="ti-user"></i>Accueil</a></li>
+                            <li><a (click)="goToMyCV()"><i class="ti-user"></i>Mon CV</a></li>
+                            <li><a (click)="goToMyProposition()"><i class="ti-user"></i>Tout Mon  Proposition</a></li>
+                            <li><a (click)="goToMyProjetencours()"><i class="ti-dashboard"></i>Projet En Cours  </a></li>
+                            <li><a (click)="goToMyProjetenAttent()"><i class="ti-dashboard"></i>Projet En Attent   </a></li>
+                            <li><a (click)="goToMyProjetRefuser()"><i class="ti-dashboard"></i>Projet En Refuser   </a></li>
+
+                            <li><a (click)="goToMyProfils()"><i class="ti-dashboard"></i>Mon Profils</a></li>
+
+                            <li><a href="#"><i class="ti-power-off"></i>Log Out</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Item Wrap Start -->
+            <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                        <!-- Single Wrap -->
+                        <div class="_dashboard_content">
+                            <div class="_dashboard_content_header">
+                                <div class="_dashboard__header_flex">
+                                    <h4><i class="fa fa-user mr-1"></i>My CV</h4>
+                                </div>
+
+                            </div>
+                            <div class="custom-file" *ngIf="!cv.resumer">
+                                <label class="custom-file-label" data-toggle="modal" data-target="#login">Create CV<i
+                                        class="fa fa-plus"></i></label>
+                            </div>
+                            <div class="_dashboard_content_body">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#login2">My Experience </button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#login1">My
+                                            Formation </button>
+
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#login3">Langue </button>
+
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-primary"  data-toggle="modal" data-target="#login4">My Skills </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="_dashboard_content_body shadow">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="d-user-avater">
+                                        <img [src]="'data:image/jpeg;base64,' + cv.photo" alt="{{cv.photo}}"
+                                            class="img-fluid rounded shadow" alt="">
+                                        <h5 class="mt-3">{{cv.titre}}</h5>
+                                        <span>{{cv.utilisateurs.adresse}}</span>
+                                    </div>
+                                    <div *ngIf="cv.id">
+                                        <h4>Personal Informaion</h4>
+                                        <div>
+                                            <p><i class="fa fa-user mr-2"></i>{{cv.utilisateurs.nom +"
+                                                "+cv.utilisateurs.prenom}}</p>
+                                            <p><i class="fa fa-calendar mr-2" aria-hidden="true"></i>
+                                                {{cv.utilisateurs.dateNaissance| date}}</p>
+                                            <p><i class="fa fa-map-marker mr-2" aria-hidden="true"></i>
+                                                {{cv.utilisateurs.adresse}}</p>
+                                            <p><i class="fa fa-envelope mr-2" aria-hidden="true"></i>
+                                                {{cv.utilisateurs.email}}</p>
+                                            <p><i class="fa fa-phone mr-2" aria-hidden="true">
+                                                </i>{{cv.utilisateurs.numTel}}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div    *ngIf="cv.competance.length !=0" >
+                                        <h4>Skills </h4>
+                                        <ul >
+                                            <li *ngFor="let cvcom of cv.competance"> <span >{{cvcom.nomCompetance}}</span></li>
+                                             
+                                        </ul>
+                                    </div>
+                                    <div   *ngIf="cv.langue.length !=0" >
+                                        <h4>Langue </h4>
+                                        <div *ngFor="let lng of cv.langue" >
+                                            <p>
+                                               <b> {{lng.nomLangue}}</b>  : {{lng.niveauLangue}}</p>
+                                               
+                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-9" >
+                                    <div *ngIf="cv.resumer"  class="mb-5">
+                                        <h4>Profils </h4>
+                                        <div>
+                                            <p>
+                                                {{cv.resumer}}
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                 
+                                    <div    *ngIf="cv.formation.length!=0"  class="mb-5">
+                                       
+                                        <h4>Formations </h4>
+                                        <div class="messages-container-inner" >
+
+                                            <!-- Messages -->
+                                            <div    >
+                                                <ul *ngFor="let for of cv.formation">
+                                                    <li >
+                                                        <div class="message-by"><span> {{for.dateObtenation|date}}</span>
+                                                            <div class="message-by-headline">
+                                                                <h5 class="mb-3"> {{for.formationName}} ({{for.etablissement}}
+                                                                    {{for.ville}})
+                                                                </h5>
+                                                            </div>
+                                                         </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  
+                                    <div  *ngIf="cv.experience.length != 0"  class="mb-5">
+                                        <h4>Experience </h4>
+                                        <ul *ngFor="let exp of cv.experience">
+                                            <li >
+                                                <div class="message-by"><span  >{{exp.titre |uppercase}} </span> -- 
+                                                    <span  >{{exp.dateDebut |date}} --  {{exp.dateFin |date}}</span> 
+                                                    <div class="message-by-headline">
+                                                        <h5 class="mb-3">  <br>
+                                                            {{exp.nomSte|uppercase}} {{exp.ville |uppercase}}
+                                                        </h5>
+                                                        <p>{{exp.description|titlecase}}</p>
+                                                    </div>
+                                                 </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="registermodal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
+        <div class="modal-content" id="registermodal">
+            <div class="modal-header">
+                <h4>Create CV</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i
+                            class="ti-close"></i></span></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="login-form">
+                    <form #form="ngForm" (ngSubmit)="addnewCvForJobSeeker(form)">
+
+                        <div class="form-group">
+                            <label>Photos</label>
+                            <input type="file" class="form-control" name="image" (change)="onFileSelected($event)">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Resumer</label>
+                            <textarea class="form-control" [(ngModel)]="cv.resumer" name="resumer"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Titre</label>
+                            <input type="text" class="form-control" [(ngModel)]="cv.titre" name="titre">
+                        </div>
+                        <div class="form-group">
+
+                            <input type="text" value="{{cv.utilisateurs.id}}" [(ngModel)]="cv.utilisateurs.id"
+                                name="utilisateurs" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn dark-2 btn-md full-width pop-login">Add New Cv</button>
+                        </div>
+
+                    </form>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="login1" tabindex="-1" role="dialog" aria-labelledby="registermodal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
+        <div class="modal-content" id="registermodal">
+            <div class="modal-header">
+                <h4>Formation</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i
+                            class="ti-close"></i></span></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="login-form">
+                    <form #form="ngForm" (ngSubmit)="addnewFormation(form)">
+
+                        <div class="form-group">
+                            <label>Formation Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="formation.formationName"
+                                name="formationName">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Etablissemenet</label>
+                            <input type="text" class="form-control" [(ngModel)]="formation.etablissement"
+                                name="etablissement">
+                        </div>
+                        <div class="form-group">
+                            <label>Ville</label>
+                            <input type="text" class="form-control" [(ngModel)]="formation.ville" name="ville">
+                        </div>
+                        <div class="form-group">
+                            <label>Date Obtenation</label>
+                            <input type="date" class="form-control" [(ngModel)]="formation.dateObtenation"
+                                name="dateObtenation">
+                        </div>
+                        <div class="form-group">
+
+                            <input type="hidden" class="form-control" value="{{formation.cv.id}}" name="cv"
+                                [(ngModel)]="formation.cv.id">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Add New Formation</button>
+                        </div>
+
+                    </form>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="login2" tabindex="-1" role="dialog" aria-labelledby="registermodal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
+        <div class="modal-content" id="registermodal">
+            <div class="modal-header">
+                <h4>Experience</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i
+                            class="ti-close"></i></span></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="login-form">
+                    <form #form="ngForm" (ngSubmit)="addnewExp(form)">
+
+                        <div class="form-group">
+                            <label>Experience Titre </label>
+                            <input type="text" class="form-control" [(ngModel)]="experience.titre"
+                                name="titre">
+                        </div>
+                        <div class="form-group">
+                            <label>Nom Societe </label>
+                            <input type="text" class="form-control" [(ngModel)]="experience.nomSte"
+                                name="nomSte">
+                        </div>
+                        <div class="form-group">
+                            <label> Ville</label>
+                            <input type="text" class="form-control" [(ngModel)]="experience.ville"
+                                name="ville">
+                        </div>
+                        <div class="form-group">
+                            <label>Date Debut</label>
+                            <input type="date" class="form-control" [(ngModel)]="experience.dateDebut" name="dateDebut">
+                        </div>
+                        <div class="form-group">
+                            <label>Date Fin</label>
+                            <input type="date" class="form-control" [(ngModel)]="experience.dateFin"
+                                name="dateFin">
+                        </div>
+                        <div class="form-group">
+                            <label>Description </label>
+                            <textarea class="form-control" [(ngModel)]="experience.description"
+                                name="description">
+                                </textarea>
+                        </div>
+                        <div class="form-group">
+
+                            <input type="hidden" class="form-control" value="{{experience.cv.id}}" name="cv"
+                                [(ngModel)]="experience.cv.id">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Add New Experience</button>
+                        </div>
+
+                    </form>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="login3" tabindex="-1" role="dialog" aria-labelledby="registermodal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
+        <div class="modal-content" id="registermodal">
+            <div class="modal-header">
+                <h4>Langue</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i
+                            class="ti-close"></i></span></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="login-form">
+                    <form #form="ngForm" (ngSubmit)="addnewLangue(form)">
+
+                        <div class="form-group">
+                            <label>Experience Titre </label>
+                            <select class="form-control" [(ngModel)]="langue.nomLangue" name="nomLangue">
+                                <option value="">Select a language</option>
+                                <option value="English">English</option>
+                                <option value="French">French</option>
+                                <option value="Spanish">Spanish</option>
+                                <option value="German">German</option>
+                                <option value="Chinese">Chinese</option>
+                                <option value="Japanese">Japanese</option>
+                                <option value="Russian">Russian</option>
+                                <option value="Arabic">Arabic</option>
+                                <option value="Portuguese">Portuguese</option>
+                                <option value="Hindi">Hindi</option>
+                                <option value="Bengali">Bengali</option>
+                                <option value="Urdu">Urdu</option>
+                                <option value="Indonesian">Indonesian</option>
+                                <option value="Italian">Italian</option>
+                                <option value="Dutch">Dutch</option>
+                                <option value="Korean">Korean</option>
+                                <option value="Turkish">Turkish</option>
+                                <option value="Vietnamese">Vietnamese</option>
+                                <option value="Thai">Thai</option>
+                                <option value="Polish">Polish</option>
+                                <option value="Swedish">Swedish</option>
+                                <option value="Greek">Greek</option>
+                                <option value="Czech">Czech</option>
+                                <option value="Danish">Danish</option>
+                                <option value="Finnish">Finnish</option>
+                                <option value="Hungarian">Hungarian</option>
+                                <option value="Norwegian">Norwegian</option>
+                                <option value="Romanian">Romanian</option>
+                                <option value="Swahili">Swahili</option>
+                                <option value="Tagalog">Tagalog</option>
+                                <option value="Hebrew">Hebrew</option>
+                                <option value="Malay">Malay</option>
+                                <option value="Persian">Persian</option>
+                                <option value="Slovak">Slovak</option>
+                                <option value="Ukrainian">Ukrainian</option>
+                                <option value="Catalan">Catalan</option>
+                                <option value="Serbian">Serbian</option>
+                                <option value="Irish">Irish</option>
+                                <option value="Lithuanian">Lithuanian</option>
+                                <option value="Latvian">Latvian</option>
+                                <option value="Slovenian">Slovenian</option>
+                                <option value="Estonian">Estonian</option>
+                                <option value="Bulgarian">Bulgarian</option>
+                                <option value="Croatian">Croatian</option>
+                                <option value="Macedonian">Macedonian</option>
+                                <option value="Luxembourgish">Luxembourgish</option>
+                                <option value="Georgian">Georgian</option>
+                                <option value="Maltese">Maltese</option>
+                                <option value="Icelandic">Icelandic</option>
+                                <option value="Basque">Basque</option>
+                                <option value="Frisian">Frisian</option>
+                                <option value="Kurdish">Kurdish</option>
+                                <option value="Gujarati">Gujarati</option>
+                                <option value="Telugu">Telugu</option>
+                                <option value="Tamil">Tamil</option>
+                                <option value="Marathi">Marathi</option>
+                                <option value="Punjabi">Punjabi</option>
+                                <option value="Kannada">Kannada</option>
+                                <option value="Odia">Odia</option>
+                                <option value="Sinhala">Sinhala</option>
+                                <option value="Albanian">Albanian</option>
+                                <option value="Amharic">Amharic</option>
+                                <option value="Azerbaijani">Azerbaijani</option>
+                                <option value="Belarusian">Belarusian</option>
+                                <option value="Bosnian">Bosnian</option>
+                                <option value="Chichewa">Chichewa</option>
+                                <option value="Corsican">Corsican</option>
+                                <option value="Esperanto">Esperanto</option>
+                                <option value="Fijian">Fijian</option>
+                                <option value="Gaelic">Gaelic</option>
+                                <option value="Haitian Creole">Haitian Creole</option>
+                                <option value="Hausa">Hausa</option>
+                                <option value="Hawaiian">Hawaiian</option>
+                                <option value="Javanese">Javanese</option>
+                                <option value="Kazakh">Kazakh</option>
+                                <option value="Khmer">Khmer</option>
+                                <option value="Kinyarwanda">Kinyarwanda</option>
+                                <option value="Kurdish (Kurmanji)">Kurdish (Kurmanji)</option>
+                                <option value="Kyrgyz">Kyrgyz</option>
+                                <option value="Lao">Lao</option>
+                                <option value="Latin">Latin</option>
+                                <option value="Luxembourgish">Luxembourgish</option>
+                                <option value="Malagasy">Malagasy</option>
+                                <option value="Malayalam">Malayalam</option>
+                                <option value="Maori">Maori</option>
+                                <option value="Mongolian">Mongolian</option>
+                                <option value="Nepali">Nepali</option>
+                                <option value="Pashto">Pashto</option>
+                                <option value="Samoan">Samoan</option>
+                                <option value="Scots Gaelic">Scots Gaelic</option>
+                                <option value="Shona">Shona</option>
+                                <option value="Sindhi">Sindhi</option>
+                                <option value="Somali">Somali</option>
+                                <option value="Sundanese">Sundanese</option>
+                                <option value="Tajik">Tajik</option>
+                                <option value="Tatar">Tatar</option>
+                                <option value="Tibetan">Tibetan</option>
+                                <option value="Tonga">Tonga</option>
+                                <option value="Turkmen">Turkmen</option>
+                                <option value="Uighur">Uighur</option>
+                                <option value="Uzbek">Uzbek</option>
+                                <option value="Wolof">Wolof</option>
+                                <option value="Xhosa">Xhosa</option>
+                                <option value="Yiddish">Yiddish</option>
+                                <option value="Yoruba">Yoruba</option>
+                                <option value="Zulu">Zulu</option>
+    
+                            </select>
+                        </div>
+                        
+                        
+                         
+                        <div class="form-group">
+                            <label>Niveau Langue </label>
+                            <select [(ngModel)]="langue.niveauLangue" name="niveauLangue" class="form-control"  placeholder="Niveau">
+                                <option value="">Select a language</option>
+    
+                                <option value="débutant">
+                                    Niveau 1 (A0) : débutant
+                                </option>
+                                <option value="élémentaire">
+                                    Niveau 2 (A1) : élémentaire
+                                </option>
+                                <option value="pré-intermédiaire">
+                                    Niveau 3 (A2) : pré-intermédiaire
+                                </option>
+                                <option value="intermédiaire">
+                                    Niveau 4 (B1) : intermédiaire
+                                </option>
+                                <option value="intermédiaire supérieur">
+                                    Niveau 5 (B2) : intermédiaire supérieur
+                                </option>
+                                <option value="avancé">
+                                    Niveau 6 (C1) : avancé
+                                </option>
+                                <option value="courant">
+                                    Niveau 7 (C2) : courant
+                                </option>
+                            </select>
+                        
+                        </div>
+                        <div class="form-group">
+
+                            <input type="hidden" class="form-control" value="{{langue.cv.id}}" name="cv"
+                                [(ngModel)]="langue.cv.id">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Add New Langue</button>
+                        </div>
+
+                    </form>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="login4" tabindex="-1" role="dialog" aria-labelledby="registermodal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
+        <div class="modal-content" id="registermodal">
+            <div class="modal-header">
+                <h4>Competace</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i
+                            class="ti-close"></i></span></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="login-form">
+                    <form #form="ngForm" (ngSubmit)="addNewComp(form)">
+
+                        <div class="form-group">
+                            <label>competance </label>
+                            <input type="text" class="form-control" [(ngModel)]="com.nomCompetance"
+                                name="nomCompetance">
+                        </div>
+                        
+                        <div class="form-group">
+
+                            <input type="hidden" class="form-control" value="{{com.cv.id}}" name="cv"
+                                [(ngModel)]="com.cv.id">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Add New Competance</button>
+                        </div>
+
+                    </form>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

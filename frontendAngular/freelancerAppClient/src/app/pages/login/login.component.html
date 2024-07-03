@@ -1,0 +1,37 @@
+<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
+    <div class="modal-content" id="registermodal">
+        <div class="modal-header">
+            <h4>Sign In</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="ti-close"></i></span></button>
+        </div>
+        <div class="modal-body">
+            <p style="color: red;">{{message}}</p>
+            <div class="login-form">
+                <form #form="ngForm" (ngSubmit)="login(form)">
+                    <div class="form-group">
+                        <label>User Name</label>
+                        <input type="email" class="form-control" ngModel name="username" placeholder="Username" required email #username="ngModel">
+                        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="text-danger">
+                            <div *ngIf="username.errors?.['required']">User Name is required.</div>
+                            <div *ngIf="username.errors?.['email']">Invalid email format.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" ngModel name="password" placeholder="*******" required minlength="6" #password="ngModel">
+                        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+                            <div *ngIf="password.errors?.['required']">Password is required.</div>
+                            <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn dark-2 btn-md full-width pop-login" [disabled]="form.invalid">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="mf-link"><i class="ti-user"></i>Haven't An Account? <a routerLink="/register" class="theme-cl"> Sign Up</a></div>
+        </div>
+    </div>
+</div>

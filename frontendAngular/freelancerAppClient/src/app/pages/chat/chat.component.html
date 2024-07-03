@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        
+        <!-- Convershion -->
+        <div class="messages-container margin-top-0">
+            <div class="messages-headline">
+                <a href="#" class="message-action"><i class="ti-trash"></i> Delete Conversation</a>
+            </div>
+
+            <div class="messages-container-inner">
+
+                <!-- Messages -->
+                <div class="dash-msg-inbox" *ngIf="role=='FREELANCER'">
+                    Client
+                    <ul>
+                        <li *ngFor="let pers of listUtilisateur">
+                            <a href="#">
+                                <div class="dash-msg-avatar">
+                                    <span class="_user_status online"></span>
+                                </div>
+
+                                <div class="message-by">
+                                    <div class="message-by-headline" (click)="getMessage(pers.client.id)">
+                                        <h5>{{ pers.client.nom  + " " +  pers.client.prenom }}</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dash-msg-inbox" *ngIf="role=='CLIENT'">
+                    Freelancer
+                    <ul>
+                        <li *ngFor="let pers of listUtilisateur">
+                            <a href="#">
+                                <div class="dash-msg-avatar">
+                                    <span class="_user_status online"></span>
+                                </div>
+
+                                <div class="message-by">
+                                    <div class="message-by-headline" (click)="getMessage(pers.cv.utilisateurs.id)">
+                                        <h5>{{ pers.cv.utilisateurs.nom  +' '+pers.cv.utilisateurs.prenom}}</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Messages / End -->
+
+                <!-- Message Content -->
+                <div class="dash-msg-content">
+
+                    <div class="message-plunch " *ngFor="let msg of msglist">
+                             {{msg.sender.email}}
+                         <div class="dash-msg-text">
+                            <p>{{ msg.content }} </p>
+                        </div>
+                    </div>
+
+                    <!-- Reply Area -->
+                    <div class="clearfix"></div>
+                    <div class="message-reply">
+                        <form #form="ngForm" (ngSubmit)="sendMessage(form)">
+                            <input type="hidden" [(ngModel)]="message.sender.id" name="sender" [value]="admin.id" class="form-control">
+                            <input type="hidden" [(ngModel)]="message.recipient.id" name="recipient" [value]="user.id" class="form-control">
+                            <textarea [(ngModel)]="message.content" name="content" cols="40" rows="3" class="form-control with-light" placeholder="Your Message"></textarea>
+                            <button type="submit" class="btn dark-2">Send Message</button>
+                        </form>
+                    </div>
+                    
+                </div>
+                <!-- Message Content -->
+
+            </div>
+        </div>
+    </div>
+</div>

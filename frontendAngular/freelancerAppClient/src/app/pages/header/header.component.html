@@ -1,0 +1,94 @@
+ <!-- Start Navigation -->
+ <div class="header header-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <nav id="navigation" class="navigation navigation-landscape">
+                    <div class="nav-header">
+                        <a class="nav-brand" href="#">
+                            <img src="assets/img/logo.png" class="logo" alt="" />
+                        </a>
+                        <div class="nav-toggle"></div>
+                    </div>
+                    <div class="nav-menus-wrapper">
+                        <ul class="nav-menu">
+                        
+                            <li class="active"><a routerLink="/">Home</a>
+                             
+                            </li>
+                            
+                            <li >
+                                <a  routerLink="/cvlist"  > Freelancer<span class="submenu-indicator"></span></a>
+                                <ul class="nav-dropdown nav-submenu">
+                                    <li   *ngFor="let cat of listcat">
+                                        <a   (click)="getAllFreelancerByCat(cat.id)">{{cat.nomCat}}</a>
+ 
+                                    </li> 
+                                 
+                                </ul>
+                            </li>
+                            <li >
+                                <a   (click)="listAllProject()"> Project <span class="submenu-indicator"></span></a>
+                                <ul class="nav-dropdown nav-submenu">
+                                    <li   *ngFor="let cat of listcat">
+                                         <a  (click)="listProjectByCat(cat.id)">{{cat.nomCat}}</a>
+
+                                    </li> 
+                                 
+                                </ul>
+                            </li>
+                          
+ 
+                         
+                            
+                        </ul>
+                   
+                        <ul class="nav-menu nav-menu-social align-to-right" >
+                            
+                            
+                            <li >
+                                <a  routerLink="/login" *ngIf="!loginOrNot()">
+                                     <i class="ti-user mr-1"></i> Log in 
+                                </a>
+                            </li>
+                            <li >
+                                <a   (click)="goToChat(utilisateur.id)" *ngIf="loginOrNot() ">
+                                    <i class="ti-email mr-1"></i> Message
+                               </a>
+                               <li>
+                                <a   (click)="goToMyProfildemandeur()" *ngIf="loginOrNot() && userInfo?.roles[0].nomRole=='FREELANCER'">
+                                    <i class="ti-user mr-1"></i> {{utilisateur.nom+' '+utilisateur.prenom}}
+                               </a>
+                               </li>
+                              <li>
+                                <a   (click)="goToMyProfilEmployeur()" *ngIf="loginOrNot() && userInfo?.roles[0].nomRole=='CLIENT'">
+                                    <i class="ti-user mr-1"></i> {{utilisateur.nom+" "+utilisateur.prenom}}
+                               </a>
+                            </li>
+                            <li  >
+                                <a  (click)="logout()" *ngIf="loginOrNot()">
+                                     <i class="ti-arrow mr-1"></i> Logout
+                                </a>
+                            </li>
+                            <li  >
+                                <a  routerLink="/register" *ngIf="!loginOrNot()">
+                                     <i class="ti-arrow mr-1"></i> Register
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+   
+     
+      
+ 
+  
+    <div class="_freelacers_121_foot">
+     </div>
+ <div class="clearfix"></div>
+<router-outlet></router-outlet>
+<app-footer></app-footer>

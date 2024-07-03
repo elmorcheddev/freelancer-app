@@ -1,0 +1,128 @@
+<div class="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                
+                <h2 class="ipt-title">List Project </h2>
+                 
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================ Page Title End ================================== -->
+
+<!-- ============================ Main Section Start ================================== -->
+<section class="gray-bg">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="simple-sidebar sm-sidebar">							
+                
+                    <div class="search-sidebar_header">
+                        <h4 class="ssh_heading">Search Filter</h4>
+                        <a href="javascript:void(0);" class="clear_all">Clear All</a><a href="#search_open" data-toggle="collapse" aria-expanded="false" role="button" class="collapsed _filter-ico"><i class="fa fa-sliders"></i></a>
+                    </div>
+                    
+                    <!-- Find New Property -->
+                    <div class="sidebar-widgets collapse miz_show" id="search_open" data-parent="#search_open">
+                        
+                        <div class="search-inner p-0">
+                            
+                           
+                            <div class="filter-search-box pb-0">
+                                <div class="form-group">
+                                    <input type="text"  [(ngModel)]="searchData" class="form-control" placeholder="Search by keywords...">
+                                </div>
+                              
+                            </div>
+                            <div class="filter_wraps">
+                                
+                                <!-- Job categories Search -->
+                                <div class="single_search_boxed">
+                                    <div class="widget-boxed-header">
+                                        <h4>
+                                            <a href="#categories" data-toggle="collapse" aria-expanded="true" role="button">Job Categories</a>
+                                        </h4>
+                                        
+                                    </div>
+                                    <div class="widget-boxed-body collapse show" id="categories" data-parent="#categories" >
+                                        <div class="side-list no-border">
+                                            <!-- Single Filter Card -->
+                                            <div class="single_filter_card">
+                                                <div class="card-body pt-0">
+                                                    <div class="inner_widget_link">
+                                                        <ul class="no-ul-list filter-list" *ngFor="let c of listCat">
+                                                            <li>
+                                                                 <label for="a1" class="checkbox-custom-label" (click)="getPrjByIdCat(c.id)">{{c.nomCat}}</label>
+                                                              
+                                                            </li>
+                                                             
+                                                           
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                         
+                        </div>							
+                    </div>
+                </div>
+                <!-- Sidebar End -->
+            
+            </div>
+            
+            <!-- Item Wrap Start -->
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <!-- Filter Search -->
+                        <div class="_filt_tag786">
+                            Project List
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        
+                        <!-- Single Item -->
+                        <div class="_list_jobs_wraps shadow_0"  *ngFor="let c of filterCvs(listProjByCat,searchData)">
+                            <div class="_list_jobs_f1ex first">
+                                <div class="_list_110">
+                                 
+                                    <div class="_list_110_caption">
+                                        <h4 class="_jb_title"><a href="job-detail.html">{{c.title}}</a></h4>
+                                        <div class="_emp_jb">{{c.client.nom +" "+ c.client.prenom}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="_list_jobs_f1ex">
+                                <div class="_list_110_caption">
+                                    <h4 class="_jb_title">{{c.description}}</h4>
+                                    <div class="_emp_jb">Description</div>
+                                </div>	
+                            </div>
+                         
+                            <div class="_list_jobs_f1ex">
+                                <a   class="_jb_apply" (click)="projectDetails(c.id)">View Project</a>
+                            </div>
+                        </div>
+                    
+                        
+                  
+                  
+                    </div>
+                </div>
+            
+                
+            </div>
+            
+        </div>
+    </div>
+</section>

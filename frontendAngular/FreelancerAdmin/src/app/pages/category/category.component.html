@@ -1,0 +1,50 @@
+<div class="container-fluid">
+<div class="row">
+    <table class="table table-rsponsive">
+        <thead>
+            <th>ID</th>
+            <th>NOM</th>
+            <th>Action</th>
+            <th><button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Ajouter Categories</button></th>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let c of listCat">
+                <td>{{c.id}}</td>
+                <td> {{c.nomCat}} </td>
+                <td>
+                    <button class="btn btn-primary" (click)="modifierCat(c.id)" data-toggle="modal" data-target="#exampleModal"> Modifier</button>
+                    <button class="btn btn-danger">Supprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form  #form="ngForm" (ngSubmit)="ajouterCat(form)">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <div class="form-group">
+            <label > Nom Categorie </label>
+            <input type="text" class="form-control" [(ngModel)]="cat.nomCat" name="nomCat" required>
+            <div class="error"
+            *ngIf="form.controls['nomCat']?.invalid && (form.controls['nomCat']?.dirty || form.controls['nomCat']?.touched)">
+            <div *ngIf="form.controls['nomCat']?.errors">Nom Categorie est Obligatoires .</div>
+            </div>
+         </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save changes</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>

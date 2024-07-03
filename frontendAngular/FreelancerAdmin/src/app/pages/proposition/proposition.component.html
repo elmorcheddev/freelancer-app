@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="table-responsive"  >
+        <table class="table">
+            <thead>
+                <th>Freelancer </th>
+                <th>Client</th>
+                <th>Categorie </th>
+                <th>price </th>
+                <th>Date  </th>
+                <th>Etat  </th>
+   
+      
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of proplist" >
+                    <td> {{p.cv.utilisateurs.nom+' '+p.cv.utilisateurs.prenom}} </td>
+                     <td> {{p.client.nom+' '+p.client.prenom}}  </td>
+                    <td> {{p.project.categorieProjet.nomCat}}  </td>
+                    <td> {{p.price }} TND </td>
+
+                    <td> {{p.sendingDate | date}}  </td>
+                    <td> 
+                    <span *ngIf="p.enattent" class="badge badge-warning">
+                            Enattent
+                    </span>
+                    <span *ngIf="!p.enattent && p.refuser" class="badge badge-danger">
+                        Refuser
+                </span>
+                <span *ngIf="!p.enattent && p.accepter" class="badge badge-warning">
+                    Accepter
+            </span>
+                </td>
+ 
+                </tr>
+            </tbody>
+        </table></div>
+    </div>
+    </div>
+ 

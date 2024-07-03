@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="table-responsive"  >
+        <table class="table">
+            <thead>
+                <th>Titre</th>
+                <th>Typ budget</th>
+                <th>Categorie </th>
+                <th>Client </th>
+                <th>Date Creation </th>
+                <th>Experience  </th>
+                <th>Competance  </th>
+  
+      
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of projets" >
+                    <td> {{p.title}} </td>
+                     <td> {{p.categorieProjet.nomCat}}  </td>
+                    <td> {{p.client.nom +' '+p.client.prenom}}  </td>
+                    <td> {{p.createdDate | date}}  </td>
+                    <td> {{p.experience}}  </td>
+                    <td> {{p.skills}}  </td>
+                     <td> {{p.projectSize}}  </td>
+
+                 
+                </tr>
+            </tbody>
+        </table></div>
+    </div>
+    </div>
+ 

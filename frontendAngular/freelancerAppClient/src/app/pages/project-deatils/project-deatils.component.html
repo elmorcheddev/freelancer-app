@@ -1,0 +1,151 @@
+	<!-- ============================ Page Title Start================================== -->
+    <div class="page-title search-form dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    
+                    <div class="_jb_details01">
+                        
+                        
+                        
+                        <div class="_jb_details01_last" *ngIf="cv.id">
+                            <ul class="_flex_btn">
+                                 <li><a   data-toggle="modal" data-target="#login"  class="_applied_jb">Apply Job</a></li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <section>
+        <div class="container">
+            <div class="row" *ngIf="cv.id">
+            
+                <div class="col-lg-8 col-md-12 col-sm-12" >
+                    <div class="_job_detail_box">
+                        
+                        <div class="_job_detail_single">
+                            <h4>Job Summary</h4>
+                            <p>
+                                {{prj.description}}
+                             </p>
+                        </div>
+                         
+                        
+                        
+                      
+                        
+                     
+                        
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                
+                    <div  >
+                       
+                        
+                        <div  >
+                            
+                            <ul>  
+                                <h4 class="jbs_title">{{prj.title}} </h4>
+                                <li><h4>{{prj.client.nom +" "+prj.client.prenom}}</h4></li>
+
+                                 <li>Email:{{prj.client.email}}</li>
+                                   <li>Project Size :  {{prj.projectSize}}</li>
+                                 <li>Project Bedget type - price : {{prj.bedgutType}} - {{prj.fixedPrice}}</li>
+                                 <li>Categories: {{prj.categorieProjet.nomCat}}</li>
+                                 <li>Experience : {{prj.experience}} </li>
+                                 <li>Skills: {{prj.skills}}</li>
+
+                            </ul>
+                            <div class="_job_detail_single flexeo">
+                           
+                            
+                                <div  >
+                                    <ul class="bottoms_applies" >
+                                        <li><a   (click)="gotoProject(prj.id)" data-toggle="modal" data-target="#login"  class="btn btn-success">Apply Job</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="_jb_summary">
+                       
+                    </div>
+                
+                </div>
+                
+            </div>
+            <div class="row" *ngIf="!cv.id">
+            
+                <p> Only Freelancer can see content of this pages  </p>
+            
+                
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="registermodal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
+            <div class="modal-content" id="registermodal">
+                <div class="modal-header">
+                    <h4>Mon Proposition </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i
+                                class="ti-close"></i></span></button>
+                </div>
+                <div class="modal-body">
+    
+                    <div class="login-form">
+                        <form #form="ngForm" (ngSubmit)="sendProposition(form)" >
+    
+                           <div class="row">
+                            <div class="col-12">
+                               
+                                <div class="form-group">
+                                    <label>Lettre de motivation </label>
+                                    <textarea rows="3" cols="3" [(ngModel)]="propsition.lettreMotivation" name="lettreMotivation"   class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <input type="text" [(ngModel)]="propsition.price" name="price"   class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Working In</label>
+                                    <input type="number" [(ngModel)]="propsition.workIn" name="workIn"   class="form-control">
+                                </div>
+                                <div class="form-group">
+                                     <input type="hidden" [(ngModel)]="propsition.cv.id" value="{{cv.id}}" name="freelancer" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" [(ngModel)]="propsition.client.id" value="{{prj.client.id}}" name="client"  class="form-control">
+                               </div>
+                                <div class="form-group">
+                                     <input type="hidden" [(ngModel)]="propsition.project.id" value="{{prj.id}}" name="project"  class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Portfolio Link </label>
+                                    <input type="url" [(ngModel)]="propsition.portfolioLink" name="portfolioLink"   class="form-control">
+                                </div>
+                                <div class="form-group">
+                                     <button type="submit"  class="btn btn-primary"> Send Proposition </button>
+                                </div>
+                            </div>
+                           </div> 
+     
+    
+                        </form>
+                    </div>
+    
+    
+    
+    
+                </div>
+    
+            </div>
+        </div>
+    </div>

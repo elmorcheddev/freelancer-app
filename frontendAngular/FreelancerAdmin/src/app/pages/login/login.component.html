@@ -1,0 +1,61 @@
+<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
+    <div class="modal-content" id="registermodal">
+       
+
+         
+        <div class="card bg-secondary "  >
+            <div class="card-header text-center pb-5">
+               
+			<h1><b style="text-shadow: 2px 4px 3px rgba(0,0,0,0.3);">Authentification</b></h1>
+               <div class="text-center text-muted mb-4">
+				     
+ 				<div class="text-center  mt-3" style="color: red;" *ngIf="message"> {{message}}  </div>				 
+
+			 
+              </div>
+		 
+              </div>
+            <div class="card-body px-lg-5 py-lg-5">
+          
+              <form  #form="ngForm" (ngSubmit)="login(form)">
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" 		ngModel      
+					 name="username" placeholder="Email" type="email" required email>
+                     <div class="error"
+                     *ngIf="form.controls['username']?.invalid && (form.controls['username']?.dirty || form.controls['username']?.touched)">
+                     <div *ngIf="form.controls['username']?.errors">Username is required.</div>
+                 </div>
+                  </div>
+                  
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Password" ngModel   required minlength="5"
+				 name="password"   type="password">
+                 <div class="error"
+                 *ngIf="form.controls['password']?.invalid && (form.controls['password']?.dirty || form.controls['password']?.touched)">
+                 <div *ngIf="form.controls['password']?.errors">Password is required.</div>
+             </div>
+                  </div>
+                
+                </div>
+                 
+                <div class="text-center">
+                  <button type="submit"   class="btn btn-primary my-4">Se Connecter</button>
+                </div>
+                <div class="mt-5">
+                    Don't have admin Account ? <a routerLink="/register">Register</a>
+                </div>
+              </form>
+            </div>
+          </div>
+     
+    </div>
+</div>

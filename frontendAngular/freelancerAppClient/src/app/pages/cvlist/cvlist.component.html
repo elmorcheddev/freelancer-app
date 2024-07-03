@@ -1,0 +1,149 @@
+
+<section class="gray-bg">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-3 col-md-12 col-sm-12">
+                <div class="simple-sidebar sm-sidebar">							
+                
+                    <div class="search-sidebar_header">
+                        <h4 class="ssh_heading">Search Filter</h4>
+                        <a href="javascript:void(0);" class="clear_all">Clear All</a><a href="#search_open" data-toggle="collapse" aria-expanded="false" role="button" class="collapsed _filter-ico"><i class="fa fa-sliders"></i></a>
+                    </div>
+                    
+                    <!-- Find New Property -->
+                    <div class="sidebar-widgets collapse miz_show" id="search_open" data-parent="#search_open">
+                        
+                        <div class="search-inner p-0">
+                            
+                            <div class="filter-search-box pb-0">
+                                <div class="form-group">
+                                    <input type="text"  [(ngModel)]="searchData" class="form-control" placeholder="Search by keywords...">
+                                </div>
+                              
+                            </div>
+                            
+                            <div class="filter_wraps">
+                                
+                                <!-- Job categories Search -->
+                                <div class="single_search_boxed">
+                                    <div class="widget-boxed-header">
+                                        <h4>
+                                            <a   href="#categories" data-toggle="collapse" aria-expanded="true" role="button">Job Categories</a>
+                                        </h4>
+                                        
+                                    </div>
+                                    <div class="widget-boxed-body collapse show" id="categories" data-parent="#categories">
+                                        <div class="side-list no-border">
+                                            <!-- Single Filter Card -->
+                                            <div class="single_filter_card">
+                                                <div class="card-body pt-0">
+                                                    <div class="inner_widget_link">
+                                                        <ul class="no-ul-list filter-list" *ngFor="let cat of listCat">
+                                                            <li>
+                                                                 <label for="a1" class="checkbox-custom-label"
+                                                                 (click)="getFreelancerByCat(cat.id)">{{cat.nomCat}}</label>
+                                                              
+                                                            </li> 
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             
+                                
+                                
+                               
+                                
+                            </div>
+                            
+                           
+                        </div>							
+                    </div>
+                </div>
+                <!-- Sidebar End -->
+            
+            </div>
+            
+            <!-- Item Wrap Start -->
+            <div class="col-lg-9 col-md-12 col-sm-12" *ngIf="id">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                     
+                    </div>
+                </div>
+                
+                <div class="row">
+                    
+                    <div class="col-lg-3 col-md-6 col-sm-12" style="margin-right: 9rem;"  *ngFor="let cv of filterCvs(cvsByCategory, searchData)">
+                        <div class="_freelacers_120 large shadow_0" >
+                             <div class="_freelacers_120_thumb">
+                                <img src="assets/img/verify.svg" class="verified" width="15" alt="">
+                                <a href="freelancer-detail.html"><img [src]="'data:image/jpeg;base64,' + cv.photo" alt="{{cv.photo}}" class="img-fluid circle" alt=""></a>
+                            </div>
+                            <div class="_freelacers_120_caption">
+                                <div class="_freelan_laft"><i class="ti-location-pin mr-1"></i>{{cv.utilisateurs.adresse}}</div>
+                                <h4><a href="freelancer-detail.html">{{cv.utilisateurs.nom +" "+ cv.utilisateurs.prenom}}</a></h4>
+                                <span class="_freel_spec">{{cv.titre}}</span>
+                                <div class="_freelan_right"><strong><i class="fa fa-star mr-1"></i>4.6</strong></div>
+                            </div>
+                            <div class="_freelacers_120_body">
+                                <div class="_free0o9">
+                                    <ul >
+                                        <li *ngFor="let cvcom of cv.competance"> <span >{{cvcom.nomCompetance}}</span></li>
+                                         
+                                    </ul>
+                                </div>
+                                <div class="_freelacers_121_foot">
+                                    <a (click)="goToCvDetails(cv.id)" class="btn btn-theme light">View Profile</a>	
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+             
+                    
+                </div>
+           
+                
+            </div>
+            <div class="col-lg-9 col-md-12 col-sm-12" *ngIf="!id">
+              
+                
+                <div class="row">
+                    
+                    <div class="col-lg-3 col-md-6 col-sm-12" style="margin-right: 9rem;"  *ngFor="let cv of filterCvs(listAllCV, searchData)">
+                        <div class="_freelacers_120 large shadow_0" >
+                             <div class="_freelacers_120_thumb">
+                                <img src="assets/img/verify.svg" class="verified" width="15" alt="">
+                                <a href="freelancer-detail.html"><img [src]="'data:image/jpeg;base64,' + cv.photo" alt="{{cv.photo}}" class="img-fluid circle" alt=""></a>
+                            </div>
+                            <div class="_freelacers_120_caption">
+                                <div class="_freelan_laft"><i class="ti-location-pin mr-1"></i>{{cv.utilisateurs.adresse}}</div>
+                                <h4><a href="freelancer-detail.html">{{cv.utilisateurs.nom +" "+ cv.utilisateurs.prenom}}</a></h4>
+                                <span class="_freel_spec">{{cv.titre}}</span>
+                                <div class="_freelan_right"><strong><i class="fa fa-star mr-1"></i>4.6</strong></div>
+                            </div>
+                            <div class="_freelacers_120_body">
+                                <div class="_free0o9">
+                                    <ul >
+                                        <li *ngFor="let cvcom of cv.competance"> <span >{{cvcom.nomCompetance}}</span></li>
+                                         
+                                    </ul>
+                                </div>
+                                <div class="_freelacers_121_foot">
+                                    <a (click)="goToCvDetails(cv.id)" class="btn btn-theme light">View Profile</a>	
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+             
+                    
+                </div>
+           
+                
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,75 @@
+<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
+    <div class="modal-content" id="registermodal">
+        <div class="modal-header">
+            <h4>Sign In</h4>
+        </div>
+        <div class="modal-body">
+            <p style="color: red;">{{message}}</p>
+            <div class="login-form">
+                <form #form="ngForm" (ngSubmit)="register(form)">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" [(ngModel)]="admin.nom" name="nom"
+                                    placeholder="Username" required minlength="3">
+                                <div class="error"
+                                    *ngIf="form.controls['nom']?.invalid && (form.controls['nom']?.dirty || form.controls['nom']?.touched)">
+                                    First Name is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" [(ngModel)]="admin.prenom" name="prenom"
+                                    placeholder="Username" required minlength="3">
+                                <div class="error"
+                                    *ngIf="form.controls['prenom']?.invalid && (form.controls['prenom']?.dirty || form.controls['prenom']?.touched)">
+                                    <div *ngIf="form.controls['prenom']?.errors">Last Name is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                         
+                         
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>User Name</label>
+                                <input type="email" class="form-control" [(ngModel)]="admin.email"
+                                    name="email" placeholder="Username" required email minlength="5">
+                                <div class="error"
+                                    *ngIf="form.controls['username']?.invalid && (form.controls['username']?.dirty || form.controls['username']?.touched)">
+                                    <div *ngIf="form.controls['username']?.errors">Username is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+
+                                <label>Password</label>
+                                <input type="password" class="form-control" [(ngModel)]="admin.password"
+                                    name="password" placeholder="Username" required minlength="5">
+                                <div class="error"
+                                    *ngIf="form.controls['password']?.invalid && (form.controls['password']?.dirty || form.controls['password']?.touched)">
+                                    <div *ngIf="form.controls['password']?.errors">Password is required.</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <button type="submit" class="btn dark-2 btn-md full-width pop-login">Register</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+         <div class="modal-footer">
+            <div class="mf-link"><i class="ti-user"></i>Have An Account?<a routerLink="/login" class="theme-cl"> Log
+                    in</a></div>
+        </div>
+    </div>
+ 

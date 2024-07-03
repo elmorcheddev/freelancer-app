@@ -1,0 +1,61 @@
+<div class="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                
+                <h2 class="ipt-title">Search Freelancers</h2>
+                <span class="ipn-subtitle">Browse All Freelancers</span>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================ Page Title End ================================== -->
+
+<!-- ============================ Main Section Start ================================== -->
+<section class="gray-bg">
+    <div class="container">
+        <div class="row">
+            
+          
+            
+            <!-- Item Wrap Start -->
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <!-- Filter Search -->
+                         
+                    </div>
+                </div>
+                
+                <div class="row">
+                    
+                    <!-- Single Item -->
+                    <div class="col-lg-3 col-md-6 col-sm-12"  *ngFor="let fr of cvsByCategory">
+                        <div class="_freelacers_120 shadow_0"   (click)="cvDetails(fr.id)">
+                            <div class="_freelancers_rate">TND {{fr.utilisateurs.prixH}} hourly</div>
+                            <div class="_freelacers_120_thumb">
+                                <img [src]="'data:image/jpeg;base64,' + fr.photo" alt="{{fr.photo}}"
+                                class="verified" width="15" alt="" (click)="cvDetails(fr.id)">
+                                <a  ><img [src]="'data:image/jpeg;base64,' + fr.photo" alt="{{fr.photo}}" class="img-fluid circle" alt=""></a>
+                            </div>
+                            <div class="_freelacers_120_caption">
+                                <span class="_freel_spec theme-cl">{{fr.titre}}</span>
+                                <h4><a  >{{fr.utilisateurs.nom +" "+fr.utilisateurs.prenom}}</a></h4>
+                                <div class="_freelan_laft"><i class="ti-location-pin mr-1"></i>{{fr.utilisateurs.adresse}}</div>
+                             </div>
+                        </div>
+                    </div>
+                    
+                      
+                   
+                    
+                </div>
+                
+               
+                
+            </div>
+            
+        </div>
+    </div>
+</section>

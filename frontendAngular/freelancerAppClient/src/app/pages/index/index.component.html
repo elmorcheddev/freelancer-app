@@ -1,0 +1,226 @@
+<div class="hero-banner full jumbo-banner"
+    style="background:#f4f9fd url(../../../assets/img/cv.jpg); background-size: cover;">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-lg-7 col-md-8">
+                <h1>Trouvez votre emploi et assurez-vous d'avoir un <span class="text-info">objectif </span> </h1>
+                <h3 class="lead" style="color: blue;">Votre emploi de rêve vous attend.</h3>
+                <form class="search-big-form banner-search  mt-3">
+                    <div class="row m-0">
+
+
+                        <div class="col-lg-9 col-md-4 col-sm-12 p-0">
+                            <div class="form-group">
+                                <div class="input-group-append">
+                                    <input type="text" class="form-control" placeholder="search by category" 
+                                           list="categoryList" (input)="onCategoryInput($event)">
+                                    <datalist id="categoryList">
+                                        <option *ngFor="let category of listCat" [value]="category.nomCat"></option>
+                                    </datalist>
+                                    <button class="btn dark-3 r-radius" type="button" (click)="searchCategory()">
+                                        <i class="fa fa-search" style="color: wheat;"></i> Search
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+
+            <div class="col-lg-5 col-md-4">
+                <img src="../../../assets/img/side-img.png" alt="latest property" class="img-fluid">
+            </div>
+
+        </div>
+    </div>
+</div>
+<section class="min-sec">
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9">
+                <div class="sec-heading">
+                    <h2>Freelance populaire <span class="theme-cl-2">Category</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+
+            <!-- Single category -->
+            <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let cat of listCat">
+                <div class="small-category-2">
+
+                    <div class="small-category-2-thumb themes-light">
+                        <a (click)=" getAllFreelancerByCat(cat.id)"><i class="ti-hummer"></i></a>
+                    </div>
+                    <div class="sc-2-detail">
+                        <h5 class="sc-jb-title"><a (click)=" getAllFreelancerByCat(cat.id)">{{cat.nomCat}}</a></h5>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+<section class="gray-light">
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9">
+                <div class="sec-heading">
+                    <h2>Dernière Projet <span class="theme-cl-2">Category</span></h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+
+
+            <!-- Single Category -->
+            <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let cat of listCat">
+                <div class="urip_cated shadow">
+                    <div class="urip_cated_avater">
+                        <i class="ti-car"></i>
+                    </div>
+                    <div class="urip_cated_caps">
+                        <h2 class="cats_urip_title"><a (click)="listProjectByCat(cat.id)">{{cat.nomCat}}</a></h2>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+</section>
+<section class="min-sec">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-8 col-md-12 col-sm-12" *ngIf="listProjectFreelancer && loginOrNot()">
+                <div class="_large_jb_list72 shadow_0" *ngFor="let prj of listProjectFreelancer">
+                    <div class="_large_jb_header">
+                        <div class="_list_110">
+                            <div class="_list_110_caption">
+                                <h4 class="_jb_title"><a href="job-detail.html">{{prj.project.title}}</a></h4>
+                            </div>
+                        </div>
+                        <div class="_list_right-info">
+                            <ul>
+
+
+                                <li><a (click)="projectDeatils(prj.id)" class="_jb_apply theme-bt">View Project</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="_large_jb_body">
+                        <div class="_large_jb_body_list_info">
+                            <ul>
+                                <li><i class="ti-location-pin"></i>{{prj.project.projectSize}}</li>
+                                <li><i class="ti-user"></i>{{prj.project.experience}}</li>
+                                <li><i class="ti-user"></i>{{prj.project.workingIn}}</li>
+
+                            </ul>
+                        </div>
+                        <div class="_large_jb_body_list_explain">
+                            <p>
+                                {{prj.project.description}}
+                            </p>
+                            <div class="jb_req_skill">
+                                <ul>
+                                    <li><span>{{prj.project.skills}}</span></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12 shadow" *ngIf="listProject || !loginOrNot()">
+                <div class="_large_jb_list72 shadow_0" *ngFor="let prj of listProject">
+                    <div class="_large_jb_header">
+                        <div class="_list_110">
+                            <div class="_list_110_caption">
+                                <h4 class="_jb_title"><a href="job-detail.html">{{prj.title}}</a></h4>
+                            </div>
+                        </div>
+                        <div class="_list_right-info">
+                            <ul>
+
+
+                                <li><a (click)="projectDeatils(prj.id)" class="_jb_apply theme-bt">View Project</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="_large_jb_body">
+                        <div class="_large_jb_body_list_info">
+                            <ul>
+                                <li><i class="ti-location-pin"></i>{{prj.projectSize}}</li>
+                                <li><i class="ti-user"></i>{{prj.experience}}</li>
+                                <li><i class="ti-user"></i>{{prj.workingIn}}</li>
+
+                            </ul>
+                        </div>
+                        <div class="_large_jb_body_list_explain">
+                            <p>
+                                {{prj.description}}
+                            </p>
+                            <div class="jb_req_skill">
+                                <ul>
+                                    <li><span>{{prj.skills}}</span></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <h4>Featured Freelancers</h4>
+
+                <!-- Single Employer -->
+                <div class="_jb_list72 shadow_0" *ngFor="let cv of listCV">
+
+                    <div class="_jb_list72_flex" *ngIf="cv.resumer">
+                        <div class="_jb_list72_first">
+                            <div class="_jb_list72_yhumb">
+                                <a (click)="cvDetails(cv.id)"><img [src]="'data:image/jpeg;base64,' + cv.photo"
+                                        alt="{{cv.photo}}" class="img-fluid circle"></a>
+                            </div>
+                        </div>
+                        <div class="_jb_list72_last">
+                            <h4 class="_jb_title"><a (click)="cvDetails(cv.id)">{{cv.utilisateurs.nom+" "+
+                                    cv.utilisateurs.prenom}}</a></h4>
+                            <div class="_times_jb">{{cv.titre}}</div>
+                            <div class="_jb_types fulltime_lite">{{cv.utilisateurs.prixH}} TND/H</div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</section>

@@ -1,0 +1,232 @@
+<div class="page-title bg-cover" style="background:url(assets/img/bn-1.jpg)no-repeat;" data-overlay="5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12"></div>
+        </div>
+    </div>
+</div>
+<section class="gray-bg pt-4">
+    <div class="container-fluid">
+        <div class="row m-0">
+
+            <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12">
+                <div class="dashboard-navbar overlio-top">
+
+          
+                    <div class="d-navigation">
+                        <ul id="metismenu">
+                            <li><a (click)="goToMyProfils()"><i class="ti-dashboard"></i>My Profils</a></li>
+                            <li><a (click)="goToMyProject()"  ><i class="ti-user"></i>My Project</a></li>
+                            <li><a (click)="goToOffer()"  ><i class="ti-user"></i>Offers </a></li>
+ 
+                             
+                            <li><a href="#"><i class="ti-power-off"></i>Log Out</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Item Wrap Start -->
+            <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="row">
+												
+                                    
+                                 <div class="_dashboard_content">
+                                    <div class="_dashboard_content_header">
+
+
+                                        <div class="label_flex">
+                                            <label class="fl_01">My Project</label>
+                                            <div class="custom-file">
+                                                <button  data-toggle="modal"
+                                                    data-target="#login3" class="custom-file-input" id="yourfile">add
+                                                    new project </button>
+                                                <label class="custom-file-label" for="yourfile"><i
+                                                        class="fa fa-plus"></i></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     
+                               
+
+
+                                            <div class="_dashboard_content_body p-0">
+                                                <div class="_grouping_list_task" *ngFor="let p of listProj">
+                                                    
+                                                    <!-- Single List -->
+                                                    <div class="_manage_task_list">
+                                                        <div class="_manage_task_list_flex">
+                                                            <h4 class="_jb_title">{{p.title}}</h4>
+                                                            <span class="_elopi_designation">{{p.createdDate | date}}</span>
+                                                            <p>{{p.description}}</p>
+                                                            <ul class="jbx_info_list">
+                                                                <li><span><i class="ti-briefcase"></i>{{p.bedgutType}}</span></li>
+                                                                <li><span><i class="ti-credit-card"></i>{{p.categorieProjet.nomCat}}</span></li>
+                                                                <li><span><i class="ti-location-pin"></i>{{p.projectSize}}</span></li>
+                                                                <li><span><i class="ti-timer"></i>10 min ago</span></li>
+                                                            </ul>
+                                                           
+                                                            <ul class="_action_grouping_list">
+                                                                <li><a data-toggle="modal"
+                                                                    data-target="#login3" (click)="findProjectByID(p.id)" class="_edit_list_point" data-original-title="Edit job"><i class="fa fa-edit"></i></a></li>
+                                                                <li><a (click)="deleteProject(p.id)" class="_delete_point" data-original-title="Delete Job"><i class="fa fa-trash"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                       
+                                                    </div>
+                                              
+                                              
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="login3" tabindex="-1" role="dialog" aria-labelledby="registermodal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered login-pop-form" role="document">
+        <div class="modal-content" id="registermodal">
+            <div class="modal-header">
+                <h4>Project</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="ti-close"></i></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="login-form">
+                    <form #form="ngForm" (ngSubmit)="addProject(form)">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="_dashboard_content">
+                                <div class="_dashboard_content_header">
+                                    <div class="_dashboard__header_flex">
+                                        <h4><i class="ti-briefcase mr-1"></i>Project Details</h4>
+                                    </div>
+                                </div>
+                                <div class="_dashboard_content_body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label>Project Title</label>
+                                                <input type="text" [(ngModel)]="projet.title" name="title" class="form-control with-light" required #title="ngModel">
+                                                <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger">
+                                                    <div *ngIf="title.errors?.['required']">Project title is required.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group with-light">
+                                                <label>Category</label>
+                                                <select class="form-control" [(ngModel)]="projet.categorieProjet.id" name="categorieProjet" required #categorieProjet="ngModel">
+                                                    <option value=""></option>
+                                                    <option *ngFor="let cat of listCat" [value]="cat.id">{{cat.nomCat}}</option>
+                                                </select>
+                                                <div *ngIf="categorieProjet.invalid && (categorieProjet.dirty || categorieProjet.touched)" class="text-danger">
+                                                    <div *ngIf="categorieProjet.errors?.['required']">Category is required.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" class="form-control" value="{{projet.client.id}}" [(ngModel)]="projet.client.id" name="client">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label>Skills</label>
+                                                <input type="text" [(ngModel)]="projet.skills" name="skills" class="form-control" required #skills="ngModel">
+                                                <div *ngIf="skills.invalid && (skills.dirty || skills.touched)" class="text-danger">
+                                                    <div *ngIf="skills.errors?.['required']">Skills are required.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label>Project Size</label>
+                                                <select class="form-control" [(ngModel)]="projet.projectSize" name="projectSize" required #projectSize="ngModel">
+                                                    <option value=""></option>
+                                                    <option value="Small">Small</option>
+                                                    <option value="Medium">Medium</option>
+                                                    <option value="Large">Large</option>
+                                                </select>
+                                                <div *ngIf="projectSize.invalid && (projectSize.dirty || projectSize.touched)" class="text-danger">
+                                                    <div *ngIf="projectSize.errors?.['required']">Project size is required.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label>Working in</label>
+                                                <select class="form-control" [(ngModel)]="projet.workingIn" name="workingIn" required #workingIn="ngModel">
+                                                    <option value=""></option>
+                                                    <option value="less 6 month">less 6 month</option>
+                                                    <option value="less 3 month">less 3 month</option>
+                                                    <option value="less 1 month">less 1 month</option>
+                                                </select>
+                                                <div *ngIf="workingIn.invalid && (workingIn.dirty || workingIn.touched)" class="text-danger">
+                                                    <div *ngIf="workingIn.errors?.['required']">Working duration is required.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label>Experience Needed</label>
+                                                <select class="form-control" [(ngModel)]="projet.experience" name="experience" required #experience="ngModel">
+                                                    <option value=""></option>
+                                                    <option value="Entry">Entry</option>
+                                                    <option value="Intermediate">Intermediate</option>
+                                                    <option value="Expert">Expert</option>
+                                                </select>
+                                                <div *ngIf="experience.invalid && (experience.dirty || experience.touched)" class="text-danger">
+                                                    <div *ngIf="experience.errors?.['required']">Experience level is required.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label>Work Type</label>
+                                                <select class="form-control" [(ngModel)]="projet.workType" name="workType" required #workType="ngModel">
+                                                    <option value=""></option>
+                                                    <option value="Full Time">Full Time</option>
+                                                    <option value="Not full Time">Not full Time</option>
+                                                </select>
+                                                <div *ngIf="workType.invalid && (workType.dirty || workType.touched)" class="text-danger">
+                                                    <div *ngIf="workType.errors?.['required']">Work type is required.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label>Project Description</label>
+                                                <textarea class="form-control with-light" [(ngModel)]="projet.description" name="description" required #description="ngModel"></textarea>
+                                                <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger">
+                                                    <div *ngIf="description.errors?.['required']">Project description is required.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-save" [disabled]="form.invalid">Submit Project</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

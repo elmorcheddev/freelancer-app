@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row">
+        <h3>List Client</h3>
+
+        <div class="table-responsive"  >
+        <table class="table">
+            <thead>
+                <th>ID</th>
+                <th>Nom et Prenom</th>
+                 <th>Email </th>
+                
+  
+                <th>Action</th>
+                
+            </thead>
+            <tbody>
+                <tr  *ngFor="let c of clients">
+                    <td>{{c.id}}</td>
+                    <td> {{c.nom +' '+c.prenom}} </td>
+                     <td> {{c.email}} </td>
+            
+
+                     <td>
+                        <button class="btn btn-primary" *ngIf="!c.etat" (click)="activeDesactive(c.id)"> Activer</button>
+                        <button class="btn btn-danger"  *ngIf="c.etat"  (click)="activeDesactive(c.id)">Desactiver</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table></div>
+    </div>
+    </div>
+ 

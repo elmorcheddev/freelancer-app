@@ -1,0 +1,103 @@
+<div class="page-title bg-cover" style="background:url(assets/img/bn-1.jpg)no-repeat;" data-overlay="5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12"></div>
+        </div>
+    </div>
+</div>
+<section class="gray-bg pt-4">
+    <div class="container-fluid">
+        <div class="row m-0">
+            
+            <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12">
+                <div class="dashboard-navbar overlio-top">
+                   
+                    
+                    <div class="d-navigation">
+                        <ul id="metismenu">
+                            <li><a (click)="goToAccueil()"><i class="ti-user"></i>Accueil</a></li>
+                            <li><a (click)="goToMyCV()"><i class="ti-user"></i>Mon CV</a></li>
+                            <li><a (click)="goToMyProposition()"><i class="ti-user"></i>Tout Mon  Proposition</a></li>
+                            <li><a (click)="goToMyProjetencours()"><i class="ti-dashboard"></i>Projet En Cours  </a></li>
+                            <li><a (click)="goToMyProjetenAttent()"><i class="ti-dashboard"></i>Projet En Attent   </a></li>
+                            <li><a (click)="goToMyProjetRefuser()"><i class="ti-dashboard"></i>Projet En Refuser   </a></li>
+
+                            <li><a (click)="goToMyProfils()"><i class="ti-dashboard"></i>Mon Profils</a></li>
+
+                            <li><a href="#"><i class="ti-power-off"></i>Log Out</a></li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- Item Wrap Start -->
+            <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        
+                        <!-- Single Wrap -->
+                        <div class="_dashboard_content">
+                            <div class="_dashboard_content_header">
+                                <div class="_dashboard__header_flex">
+                                    <h4><i class="fa fa-check mr-1"></i>My Proposition</h4>	
+                                </div>
+                            </div>
+                           <div class="row">
+                            <div class="col-12">
+                                <div class="_dashboard_content_body p-0">
+                                    <div class="_grouping_list_task">
+                                        
+                                        <!-- Single List -->
+                                        <div class="_manage_task_list" *ngFor="let prop of listprop">
+                                            <div class="_manage_task_list_flex">
+                                                <span class="_dash_status expiring" *ngIf="prop.refuser">Refused </span>
+                                                <span class="_dash_status expiring" *ngIf="prop.accepter">Accepted </span>
+                                                <span class="_dash_status approval" *ngIf="prop.enattent">pinding </span>
+
+                                                <h2 >{{prop.project.title}}</h2> 
+                                                <span class="_elopi_designation">{{prop.sendingDate | date }}</span>
+                                                <p>{{prop.lettreMotivation}}</p>
+                                                <ul class="_action_grouping_list">
+                                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="" class="_edit_list_point" data-original-title="Edit job"><i class="fa fa-edit"></i></a></li>
+                                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="" class="_delete_point" data-original-title="Delete Job"><i class="fa fa-trash"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="_manage_task_list_right">
+                                                <div class="_act_tsk_info">
+                                                    <ul class="_act_tsk_list">
+                                                        <li>
+                                                            <div class="_act_capt_01">
+                                                                <h5>{{prop.price}} TND</h5>
+                                                                <span>Price</span>	
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="_act_capt_01">
+                                                                <h5>{{prop.workIn}} Days</h5>
+                                                                <span>Delivery Time</span>	
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                            </div>
+                         
+                           </div>
+                            
+                        </div>
+                         
+                  
+                         
+                         
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</section>

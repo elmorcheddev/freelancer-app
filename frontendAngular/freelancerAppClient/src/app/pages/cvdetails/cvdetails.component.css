@@ -1,0 +1,32 @@
+.star-rating {
+    direction: rtl; /* Afficher les étoiles de droite à gauche */
+    display: inline-block;
+}
+
+.star-rating input[type="radio"] {
+    display: none; /* Masquer les boutons radio */
+}
+
+.star-rating label {
+    color: #ddd; /* Couleur des étoiles non sélectionnées */
+    font-size: 30px; /* Taille des étoiles */
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.star-rating label:before {
+    content: '☆';
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: #f5b301; /* Couleur des étoiles sélectionnées */
+}
+
+.star-rating input[type="radio"]:checked ~ label ~ label {
+    color: #ddd; /* Couleur des étoiles non sélectionnées après l'étoile sélectionnée */
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f5b301; /* Couleur des étoiles survolées */
+}

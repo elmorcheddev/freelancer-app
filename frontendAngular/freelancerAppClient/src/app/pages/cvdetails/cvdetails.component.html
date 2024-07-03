@@ -1,0 +1,273 @@
+<section class="gray-bg pt-4">
+    <div class="container-fluid">
+        <div class="row m-0">
+
+          
+
+            <!-- Item Wrap Start -->
+            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                   
+                        <div class="_dashboard_content_body shadow">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="d-user-avater">
+
+                                        <div class="_dashboard_content_body p-0">
+                                            <div class="_dashboard_list_group">
+                                                <img [src]="'data:image/jpeg;base64,' + cv.photo" alt="{{cv.photo}}"
+                                                    class="img-fluid rounded" alt="" data-toggle="modal"
+                                                    data-target="#loginPhoto">
+                                                <div class="_dash_singl_box">
+
+                                                    <div class="_dash_singl_captions">
+
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <h5 class="mt-3">
+                                            <ul class="_action_grouping_list">
+                                                <li>{{cv.titre}}</li>
+                                                
+
+                                            </ul></h5>
+                                        <span>{{cv.utilisateurs.adresse}}</span>
+                                    </div>
+                                    <div *ngIf="cv.id">
+                                        <h4>Personal Informaion</h4>
+                                        <div>
+                                            <p><i class="fa fa-user mr-2"></i>{{cv.utilisateurs.nom +"
+                                                "+cv.utilisateurs.prenom}}</p>
+                                            <p><i class="fa fa-calendar mr-2" aria-hidden="true"></i>
+                                                {{cv.utilisateurs.dateNaissance| date}}</p>
+                                            <p><i class="fa fa-map-marker mr-2" aria-hidden="true"></i>
+                                                {{cv.utilisateurs.adresse}}</p>
+                                            <p><i class="fa fa-envelope mr-2" aria-hidden="true"></i>
+                                                {{cv.utilisateurs.email}}</p>
+                                            <p><i class="fa fa-phone mr-2" aria-hidden="true">
+                                                </i>{{cv.utilisateurs.numTel}}</p>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="cv.id">
+                                        <h4>Skills </h4>
+                                        <div *ngFor="let cmp of cv.competance">
+                                            <b>{{cmp.nomCompetance}}</b>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="cv.id">
+                                        <h4>Langue </h4>
+                                        <div >
+                                            <p>
+                                                
+                                            </p>
+                                            <ul class="_grouping_list" *ngFor="let lng of cv.langue">
+                                                <li><span><b> {{lng.nomLangue}}</b> : {{lng.niveauLangue}}</span></li>
+                                               
+                                          
+    
+                                                </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div *ngIf="cv.id" class="mb-5">
+                                        <h4>Profils </h4>
+                                        <div>
+                                            <div class="_dashboard_content_body p-0">
+                                                <div class="_dashboard_list_group">
+
+                                                    <div class="_dash_singl_box">
+
+                                                        <div class="_dash_singl_captions">
+                                                            <ul class="_grouping_list">
+                                                                <li><span>{{cv.resumer}}</span></li>
+                                                               
+                                                                </ul>
+                                                            
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="cv.id" class="mb-5">
+
+                                        <h4>Formations </h4>
+                                        <div class="messages-container-inner">
+
+                                            <div>
+                                                <div class="_dashboard_content_body p-0">
+                                                    <div class="_dashboard_list_group">
+
+                                                        <div class="_dash_singl_box">
+
+                                                            <div class="_dash_singl_captions row ">
+                                                                <ul class="_grouping_list col-12"
+                                                                    *ngFor="let for of cv.formation">
+                                                                    <li><span>{{for.dateObtenation |date}}</span></li>
+                                                                    <li><span>{{for.formationName +"-"+
+                                                                            for.etablissement}}</span></li>
+                                                                    <li><span>{{for.ville}}</span></li>
+                                                                     
+
+                                                                </ul>
+                                                                
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="cv.id" class="mb-5">
+                                        <h4>Experience </h4>
+
+
+                                        <ul *ngFor="let exp of cv.experience">
+                                            <li>
+                                                <div class="message-by"><span>{{exp.titre |uppercase}} </span> --
+                                                    <span>{{exp.dateDebut |date}} -- {{exp.dateFin |date}}</span>
+                                                    <div class="message-by-headline">
+                                                        <h5 class="mb-3"> <br>
+                                                            {{exp.nomSte|uppercase}} {{exp.ville |uppercase}}
+                                                        </h5>
+                                                        <p>{{exp.description|titlecase}}</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                           
+                                      
+
+                                            </ul>
+                                         
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="_jb_summary light_box">
+                    
+                    <div class="_jb_summary_thumb mt-5">
+                        <img [src]="'data:image/jpeg;base64,' + cv.photo" alt="{{cv.photo}}"class="img-fluid circle" >
+                    </div>
+                    <div class="_jb_summary_caption">
+                        <h4>{{cv.utilisateurs.nom +" "+cv.utilisateurs.prenom}}</h4>
+                        <span>{{cv.titre}}</span> - 
+                        <span>{{cv.utilisateurs.categorieFreelancer.nomCat}}</span>
+                        <div class="_jb_list72_foot">
+                            <div class="_times_jb"><div class="_freelan_right"><strong><i class="fa fa-star mr-1"></i>{{numberStart}}</strong></div></div>
+                        </div>
+                    </div>
+                    <div class="_jb_summary_body">
+                        <div class="_view_dis_908">
+                             <a  (click)="goToChat(cv.utilisateurs.id)" class="btn msg_btn">Message</a>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                
+                
+                
+                <div class="_jb_summary light_box p-4">
+                    <h4>Social Info</h4>
+                    <ul class="shares_jobs">
+                        <li><a href="#" class="share fb"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="share tw"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="share gp"><i class="fa fa-google"></i></a></li>
+                        <li><a href="#" class="share ln"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                    <div class="blog-details single-post-item format-standard">
+
+                        <div class="comment-area">
+                            <div class="all-comments">
+                                <h3 class="comments-title">{{taille}} Commentaires</h3>
+                                <div class="comment-list">
+                                    <ul>
+                                        <li class="single-comment" *ngFor="let review of listReview">
+                                            <article>
+                                                <div class="comment-details">
+                                                    <div class="comment-meta">
+                                                        <div class="comment-left-meta">
+                                                            <div class="comment-date">{{review.dateCreation | date}}</div>
+                                                            <h4 class="author-name">{{review.client.nom +' '+review.client.prenom}}</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="comment-text">
+                                                        <p>{{review.content}}</p>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="comment-box submit-form" *ngIf="loginOrNot()">
+                                <h3 class="reply-title">Poster un Commentaire</h3>
+                                <div class="comment-form">
+                                    <form #form="ngForm" (ngSubmit)="saveNewReview(form)">
+                                        <div class="row">
+                                            <div class="star-rating">
+                                                <input type="radio" id="star5" name="rating" value="5" [(ngModel)]="review.start"/><label for="star5" title="5 stars">☆</label>
+                                                <input type="radio" id="star4" name="rating" value="4" [(ngModel)]="review.start"/><label for="star4" title="4 stars">☆</label>
+                                                <input type="radio" id="star3" name="rating" value="3" [(ngModel)]="review.start"/><label for="star3" title="3 stars">☆</label>
+                                                <input type="radio" id="star2" name="rating" value="2" [(ngModel)]="review.start"/><label for="star2" title="2 stars">☆</label>
+                                                <input type="radio" id="star1" name="rating" value="1" [(ngModel)]="review.start"/><label for="star1" title="1 star">☆</label>
+                                            </div>
+                                            <input type="hidden" [(ngModel)]="cv.id" name="cv" value="{{cv.id}}">
+                                            <input type="hidden" [(ngModel)]="utilisateur.id" name="client" value="{{utilisateur.id}}">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <textarea [(ngModel)]="review.content" name="content" class="form-control with-light" cols="30" rows="6" placeholder="Tapez vos commentaires..."></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn dark-3 rounded full-width">Envoyer le Commentaire</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="comment-box submit-form shadow p-5" *ngIf="!loginOrNot() && nomRoles!=='CLIENT'">
+                                <div class="comment-form">
+                                    <p style="color: red;">Pour envoyer un commentaire à ce prestataire, vous devez vous connecter</p>
+                                    <a routerLink="/login" style="color: red;">Connexion</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+
+    </div>
+
+</section>

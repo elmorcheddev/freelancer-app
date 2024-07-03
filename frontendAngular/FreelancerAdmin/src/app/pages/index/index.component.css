@@ -1,0 +1,23 @@
+.container {
+    padding: 20px;
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .stats > div {
+    text-align: center;
+  }
+  
+  .chart {
+    text-align: center;
+  }
+  
+  .chart-container canvas {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  

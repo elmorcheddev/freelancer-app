@@ -1,0 +1,112 @@
+<div class="page-title bg-cover" style="background:url(assets/img/bn-1.jpg)no-repeat;" data-overlay="5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12"></div>
+        </div>
+    </div>
+</div>
+<section class="gray-bg pt-4">
+    <div class="container-fluid">
+        <div class="row m-0">
+
+            <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12">
+                <div class="dashboard-navbar overlio-top">
+
+
+                    <div class="d-navigation">
+                        <ul id="metismenu">
+                            <li><a (click)="goToMyProfils()"><i class="ti-dashboard"></i>My Profils</a></li>
+                            <li><a (click)="goToMyProject()"  ><i class="ti-user"></i>My Project</a></li>
+                            <li><a (click)="goToOffer()"  ><i class="ti-user"></i>Offers </a></li>
+ 
+                             
+                            <li><a href="#"><i class="ti-power-off"></i>Log Out</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Item Wrap Start -->
+            <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                        <!-- Single Wrap -->
+                        <div class="_dashboard_content">
+                            <div class="_dashboard_content_header">
+                                <div class="_dashboard__header_flex">
+                                    <h4><i class="fa fa-user mr-1"></i>Manage Offers</h4>
+                                </div>
+                            </div>
+
+                           
+                                
+                                <div class="_dashboard_content_body">
+                                    <div class="row">
+                                        
+                                        <!-- Single List -->
+                                        <div class="col-xl-4 col-lg-6 col-md-6" *ngFor="let prop of listProposition">
+                                             <div class="_dash_grid_box">
+                                                <div class="_dash_projet_wrap">
+                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Remove" class="_projet_removeal">
+                                                       {{prop.project.title}}</a></div>
+
+                                                <div class="_dash_remove_wrap"><a href="#" data-toggle="tooltip" data-placement="top" title="Remove" class="_trash_removeal"><i class="fa fa-trash"></i></a></div>
+                                                <div class="_dash_grid_box_thumb">
+                                                    <img [src]="'data:image/jpeg;base64,' + prop.cv.photo" alt="{{prop.cv.photo}}" class="img-fluid circle">
+                                                </div>
+                                                <div class="_dash_grid_box_caption">
+                                                    <span class="_elopi_location"><i class="ti-location-pin mr-1"></i>{{prop.cv.utilisateurs.adresse}}</span>
+                                                    <h4 class="_elcio_title"><a (click)="descoverCv(prop.cv.id)">{{prop.cv.utilisateurs.nom +" "+prop.cv.utilisateurs.prenom}}</a></h4>
+                                                     
+                                                    
+                                                    <div class="_dash_usr_bid_rate">
+                                                        <ul>
+                                                            <li>{{prop.price}} TND<span>Price</span></li>
+                                                            <li>{{prop.workIn}} Days<span>Delivery Time</span></li>
+                                                        </ul>																
+                                                    </div>
+                                                    <div class="txt">
+                                                        <p>{{prop.lettreMotivation}}</p>
+                                                    </div>
+                                                    <div class="_dash_usr_actioned">
+                                                        <ul  *ngIf="prop.enattent">
+                                                            <li><a (click)="accepter(prop.id)"  title="Accept Offer" class="_download_cv"><i class="fa fa-check"></i>Accept </a></li>
+                                                            <li><a (click)="refuser(prop.id)"   title="Refuser Offer" class="_remove"><i class="fa fa-trash"></i>Refuser </a></li>
+                                                            <li><a href="#"   class="_send_message"><i class="fa fa-envelope"></i>  Message</a></li>
+                                                        </ul>	
+                                                        <ul  *ngIf="prop.accepter">
+                                                            
+                                                            <li><a href="https://wa.me/{{prop.cv.utilisateurs.numTel}}" target="_blank" class="_send_message"><i class="fa fa-envelope"></i> Message</a></li>
+                                                        </ul>	
+                                                        <ul  *ngIf="prop.refuser">
+                                                            
+                                                         </ul>																
+                                                    </div>
+                                                </div>
+                                                <div class="_dash_usr_information">
+                                                    <ul>
+                                                        <li><i class="fa fa-envelope mr-1"></i>{{prop.cv.utilisateurs.email}}</li>
+                                                        <li><a href="#" data-toggle="tooltip" data-placement="top" class="_call_now">
+                                                            <i class="fa fa-phone"></i></a>{{prop.cv.utilisateurs.numTel}}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                         
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Wrap End -->
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+ </section>
